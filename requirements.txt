@@ -1,0 +1,6 @@
+mercury
+PyMuPDF
+langchain
+langchain-openai
+pyvis
+pydantic
