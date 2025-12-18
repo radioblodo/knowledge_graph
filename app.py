@@ -13,6 +13,7 @@ import fitz
 # For Knowledge Extraction (LangChain)
 from langchain_openai import ChatOpenAI
 import os
+import json
 from dotenv import load_dotenv
 
 # Load environment variables from the .env file 
@@ -249,22 +250,22 @@ if generate:
                         )
 
                     net.set_options(
-                        """
-                        var options = {
-                          "interaction": {
-                            "hover": true,
-                            "navigationButtons": true,
-                            "keyboard": { "enabled": true },
-                            "zoomView": true,
-                            "tooltipDelay": 120
-                          },
-                          "physics": {
-                            "stabilization": { "iterations": 250 },
-                            "solver": "forceAtlas2Based",
-                            "forceAtlas2Based": { "springLength": 160 }
-                          }
-                        };
-                        """
+                        json.dumps(
+                            {
+                                "interaction": {
+                                    "hover": True,
+                                    "navigationButtons": True,
+                                    "keyboard": {"enabled": True},
+                                    "zoomView": True,
+                                    "tooltipDelay": 120,
+                                },
+                                "physics": {
+                                    "stabilization": {"iterations": 250},
+                                    "solver": "forceAtlas2Based",
+                                    "forceAtlas2Based": {"springLength": 160},
+                                },
+                            }
+                        )
                     )
                     graph_html = net.generate_html()
                     components.html(graph_html, height=800, scrolling=False)
