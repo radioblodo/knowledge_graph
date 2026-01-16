@@ -4,3 +4,4 @@ langchain
 langchain-openai
 pyvis
 pydantic
+dotenv
